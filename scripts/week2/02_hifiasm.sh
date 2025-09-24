@@ -21,4 +21,5 @@ mkdir -p $OUTPUTDIR
 apptainer exec --bind /data/ ${CONTAINER} hifiasm ${PACBIODATA} -o ${HIFIASM_OUT} -t 16
 
 # #GFA to FASTA
+#only the p_ctg.gfa to be converted
 # awk '/^S/{print ">"$2;print $3}' ${HIFIASM_OUT}.gfa > ${HIFIASM_OUT}.fa

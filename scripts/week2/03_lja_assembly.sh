@@ -11,12 +11,10 @@
 
 WORKDIR="/data/users/aikiror/genomeAssembly"
 CONTAINER="/containers/apptainer/lja-0.2.sif"
-
 PACBIODATA="${WORKDIR}/PacBio_genome_data/Est-0/ERR11437308.fastq.gz"
-OUTPUTDIR="${WORKDIR}/output_files/02_hifiasm"
-HIFIASM_OUT="${OUTPUTDIR}/pacbio_hifi_Est-0"
+OUTPUTDIR="${WORKDIR}/output_files/03_lja/pacbio_hifi_Est-0"
 
 mkdir -p $OUTPUTDIR
 
 #generates assemblies
-apptainer exec --bind /data/ ${CONTAINER} hifiasm ${PACBIODATA} -o ${HIFIASM_OUT} -t 16
+apptainer exec --bind /data/ ${CONTAINER} lja --output-dir ${OUTPUTDIR} --reads ${PACBIODATA}
