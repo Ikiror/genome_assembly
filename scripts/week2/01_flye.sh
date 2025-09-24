@@ -16,6 +16,5 @@ OUTPUTDIR="${WORKDIR}/output_files/01_flye"
 FLYE_OUT="${OUTPUTDIR}/pacbio_hifi_Est-0"
 
 mkdir -p $OUTPUTDIR
-mkdir -p $FLYE_OUT
 
 apptainer exec --bind /data/ ${CONTAINER} flye --pacbio-hifi ${PACBIODATA} --out-dir ${FLYE_OUT} --threads 16
