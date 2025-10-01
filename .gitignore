@@ -1,3 +1,6 @@
 # Ignore directories
 /output_files/
 /report_and_errors/
+/Illumina_ascension_data/
+/PacBio_genome_data/
+*.json
