@@ -4,3 +4,5 @@
 /Illumina_ascension_data/
 /PacBio_genome_data/
 *.json
+*.log
+/busco_downloads/
