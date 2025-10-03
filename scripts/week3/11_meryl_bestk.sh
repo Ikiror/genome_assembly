@@ -10,10 +10,9 @@
 #SBATCH --partition=pibu_el8
 
 CONTAINER="/containers/apptainer/merqury_1.3.sif"
-PACBIODATA="/data/users/aikiror/genomeAssembly/PacBio_genome_data/Est-0/ERR11437308.fastq.gz"
 
 WORKDIR="/data/users/aikiror/genomeAssembly"
-OUTPUTDIR="${WORKDIR}/output_files/week3/alt_11_meryl_counting"
+OUTPUTDIR="${WORKDIR}/output_files/week3/11_meryl_bestk"
 mkdir -p ${OUTPUTDIR}
 
 OUTPUT_FILE=${OUTPUTDIR}/best_k.txt
