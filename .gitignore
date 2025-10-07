@@ -7,3 +7,6 @@
 *.log
 /busco_downloads/
 /references/
+assembly.fasta
+pacbioEst0.meryl
+pacbio_hifi_Est-0.p_ctg.fa
