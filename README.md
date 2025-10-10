@@ -31,33 +31,33 @@ Assembly Evaluation:
 
 ## Script structure
 scripts
-    week1
-        01_fastqc.sh  
-        02_v1_fastp.sh  
-        02_v2_fastp_for_read1_and_read2.sh  
-        03_jellyfish_kmer.sh  
-        04_jellyfish_histo.sh
-    week2
-        01_flye.sh  
-        02.5_awk_hifiasm.sh  
-        02_hifiasm.sh  
-        03_lja_assembly.sh  
-        04_trinity.sh
-    week3
-        01_BUSCO_eval_flye.sh
-        02_BUSCO_eval_hifiasm.sh
-        03_BUSCO_eval_lja.sh 
-        04_BUSCO_eval_trinity.sh
-        05_QUAST_flye_noref.sh
-        06_QUAST_flye_ref.sh
-        07_QUAST_hifiasm_noref.sh
-        08_QUAST_hifiasm_ref.sh
-        09_QUAST_lja_noref.sh
-        10_QUAST_lja_ref.sh
-        11_meryl_bestk.sh
-        12_MERQURY.sh
-        13_nucmer.sh
-        14_mummerplot.sh
+--week1
+----01_fastqc.sh  
+----02_v1_fastp.sh  
+----02_v2_fastp_for_read1_and_read2.sh  
+----03_jellyfish_kmer.sh  
+----04_jellyfish_histo.sh
+--week2
+----01_flye.sh  
+----02.5_awk_hifiasm.sh  
+----02_hifiasm.sh  
+----03_lja_assembly.sh  
+----04_trinity.sh
+--week3
+----01_BUSCO_eval_flye.sh
+----02_BUSCO_eval_hifiasm.sh
+----03_BUSCO_eval_lja.sh 
+----04_BUSCO_eval_trinity.sh
+----05_QUAST_flye_noref.sh
+----06_QUAST_flye_ref.sh
+----07_QUAST_hifiasm_noref.sh
+----08_QUAST_hifiasm_ref.sh
+----09_QUAST_lja_noref.sh
+----10_QUAST_lja_ref.sh
+----11_meryl_bestk.sh
+----12_MERQURY.sh
+----13_nucmer.sh
+----14_mummerplot.sh
                  
 ### 🧾 Author
 **Ikiror**  
