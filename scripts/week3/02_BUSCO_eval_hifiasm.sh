@@ -9,14 +9,23 @@
 #SBATCH --error=/data/users/aikiror/genomeAssembly/report_and_errors/error_02_BUSCO_eval__hifiasm%j.e
 #SBATCH --partition=pibu_el8
 
+#this script runs busco to evaluate the assembly
+
 #CONTAINER="/containers/apptainer/busco_5.7.1.sif"
 
+#directories
 WORKDIR="/data/users/aikiror/genomeAssembly"
-HIFIASMDATA="${WORKDIR}/output_files/02_hifiasm/pacbio_hifi_Est-0.p_ctg.fa"
 OUTPUTDIR="${WORKDIR}/output_files/02_BUSCO_eval_hifiasm"
 OUTPUTNAME="BUSCO_hifiasm_assembly"
+
+#make outputdir path if it doesnt exist
 mkdir -p $OUTPUTDIR
 
+#assembly fasta
+HIFIASMDATA="${WORKDIR}/output_files/week2/02_hifiasm/pacbio_hifi_Est-0.p_ctg.fa"
+
+#load module
 module load BUSCO/5.4.2-foss-2021a
 
+#run busco
 busco -i ${HIFIASMDATA} -m geno -l brassicales_odb10 -o ${OUTPUTNAME} --out_path ${OUTPUTDIR} 

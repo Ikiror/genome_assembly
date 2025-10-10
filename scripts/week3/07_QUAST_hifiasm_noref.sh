@@ -9,15 +9,27 @@
 #SBATCH --error=/data/users/aikiror/genomeAssembly/report_and_errors/error_07_QUAST_hifiasm_noref_%j.e
 #SBATCH --partition=pibu_el8
 
+#this script runs QUAST on an assembly to infer several quality metrics for evaluation and comparison of assemblies
+#without reference
+
+#container
 CONTAINER="/containers/apptainer/quast_5.2.0.sif"
 
+#directories
 WORKDIR="/data/users/aikiror/genomeAssembly"
-HIFIASMDATA="${WORKDIR}/output_files/02_hifiasm/pacbio_hifi_Est-0.p_ctg.fa"
 OUTPUTDIR="${WORKDIR}/output_files/07_QUAST_hifiasm_noref"
-PACBIODATA="${WORKDIR}/PacBio_genome_data/Est-0/ERR11437308.fastq.gz"
 
+#make outputdir path if it doesnt exist
 mkdir -p $OUTPUTDIR
 
+#assembly data
+HIFIASMDATA="${WORKDIR}/output_files/week2/02_hifiasm/pacbio_hifi_Est-0.p_ctg.fa"
+
+#pacbio data
+PACBIODATA="${WORKDIR}/PacBio_genome_data/Est-0/ERR11437308.fastq.gz"
+
+
+#runs quast on hifiasm assembly without a reference
 apptainer exec --bind /data/ ${CONTAINER} quast ${HIFIASMDATA} --eukaryote --large --pacbio ${PACBIODATA} --no-sv -o ${OUTPUTDIR}
 
 # --eukaryote - arabidopsis thaliana is eukaryotic

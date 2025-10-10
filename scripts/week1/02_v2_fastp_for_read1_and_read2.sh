@@ -10,14 +10,21 @@
 #SBATCH --error=/data/users/aikiror/genomeAssembly/report_and_errors/error_fastp_v2_%j.e
 #SBATCH --partition=pibu_el8
 
+#this script runs fastp to trim and improve quality of data
+
+#container
 CONTAINER="/containers/apptainer/fastp_0.23.2--h5f740d0_3.sif"
+
+#directories
 WORKDIR="/data/users/aikiror/genomeAssembly"
 OUTPUTDIR="${WORKDIR}/output_files/02_fastp"
 
+#make outputdir path if it doesnt exist
 mkdir -p ${OUTPUTDIR}
 
+#RNA-seq Sha data
 READ1="${WORKDIR}/ascension_data/RNAseq_Sha/ERR754081_1.fastq.gz"
 READ2="${WORKDIR}/ascension_data/RNAseq_Sha/ERR754081_2.fastq.gz"
 
-
+#run fastp
 apptainer exec --bind /data/ ${CONTAINER} fastp -i ${READ1} -I ${READ2} -o ${OUTPUTDIR}/ascension_read_1.fastq.gz -O ${OUTPUTDIR}/ascension_read_2.fastq.gz -h "${OUTPUTDIR}/ascension_data_fastp.html"

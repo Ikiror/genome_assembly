@@ -9,10 +9,16 @@
 #SBATCH --error=/data/users/aikiror/genomeAssembly/report_and_errors/error_hifiasm_%j.e
 #SBATCH --partition=pibu_el8
 
+#this script converts hifiasm generated GFF files to FASTA format 
+
+#directories
 WORKDIR="/data/users/aikiror/genomeAssembly"
-OUTPUTDIR="${WORKDIR}/output_files/02_hifiasm"
+OUTPUTDIR="${WORKDIR}/output_files/week2/02_hifiasm"
+
+#output prefix
 HIFIASM_OUT="${OUTPUTDIR}/pacbio_hifi_Est-0"
 
+#make outputdir path if it doenst exist
 mkdir -p $OUTPUTDIR
 
 # #GFA to FASTA

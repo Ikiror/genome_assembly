@@ -9,17 +9,30 @@
 #SBATCH --error=/data/users/aikiror/genomeAssembly/report_and_errors/error_10_QUAST_lja_ref_%j.e
 #SBATCH --partition=pibu_el8
 
+#this script runs QUAST on an assembly to infer several quality metrics for evaluation and comparison of assemblies
+#with reference
+
+#container
 CONTAINER="/containers/apptainer/quast_5.2.0.sif"
 
+#directories
 WORKDIR="/data/users/aikiror/genomeAssembly"
-LJADATA="${WORKDIR}/output_files/03_lja/pacbio_hifi_Est-0/assembly.fasta"
 OUTPUTDIR="${WORKDIR}/output_files/10_QUAST_lja_ref"
+
+#make outputdir path if it doesnt exist
+mkdir -p $OUTPUTDIR
+
+#assembly fasta 
+LJADATA="${WORKDIR}/output_files/week2/03_lja/pacbio_hifi_Est-0/assembly.fasta"
+
+#pacbio data
 PACBIODATA="${WORKDIR}/PacBio_genome_data/Est-0/ERR11437308.fastq.gz"
+
+#reference fasta for comparison
 REFERENCE="${WORKDIR}/references/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa"
 
 
-mkdir -p $OUTPUTDIR
-
+#runs quast on lja assembly with a reference
 apptainer exec --bind /data/ ${CONTAINER} quast ${LJADATA} -r ${REFERENCE} --eukaryote --large --pacbio ${PACBIODATA} --no-sv -o ${OUTPUTDIR}
 
 # --eukaryote - arabidopsis thaliana is eukaryotic

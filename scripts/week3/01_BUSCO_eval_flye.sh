@@ -11,12 +11,20 @@
 
 #CONTAINER="/containers/apptainer/busco_5.7.1.sif"
 
+#directories
 WORKDIR="/data/users/aikiror/genomeAssembly"
-FLYEDATA="${WORKDIR}/output_files/01_flye/pacbio_hifi_Est-0/assembly.fasta"
 OUTPUTDIR="${WORKDIR}/output_files/01_BUSCO_eval_flye"
 OUTPUTNAME="BUSCO_flye_assembly"
+
+#make outputdir path if it doesnt exist
 mkdir -p $OUTPUTDIR
 
+#assembly fasta 
+FLYEDATA="${WORKDIR}/output_files/week2/01_flye/pacbio_hifi_Est-0/assembly.fasta"
+
+
+#load module
 module load BUSCO/5.4.2-foss-2021a
 
+#run busco
 busco -i ${FLYEDATA} -m geno -l brassicales_odb10 -o ${OUTPUTNAME} --out_path ${OUTPUTDIR} 

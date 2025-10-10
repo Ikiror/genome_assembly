@@ -9,6 +9,8 @@
 #SBATCH --error=/data/users/aikiror/genomeAssembly/report_and_errors/error_14_mummerplot_%j.e
 #SBATCH --partition=pibu_el8
 
+#this script uses already generated .delta and plots the alignemnt of reference vs the query(assembly) using mummerplot
+
 #directories
 WORKDIR="/data/users/aikiror/genomeAssembly"
 OUTPUTDIR="${WORKDIR}/output_files/week3/14_mummerplot"

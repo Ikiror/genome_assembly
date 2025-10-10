@@ -9,16 +9,28 @@
 #SBATCH --error=/data/users/aikiror/genomeAssembly/report_and_errors/error_05_QUAST_flye_noref_%j.e
 #SBATCH --partition=pibu_el8
 
+#this script runs QUAST on an assembly to infer several quality metrics for evaluation and comparison of assemblies
+#without reference
+
+#container
 CONTAINER="/containers/apptainer/quast_5.2.0.sif"
 
+#directories
 WORKDIR="/data/users/aikiror/genomeAssembly"
-FLYEDATA="${WORKDIR}/output_files/01_flye/pacbio_hifi_Est-0/assembly.fasta"
 OUTPUTDIR="${WORKDIR}/output_files/05_QUAST_flye_noref"
 OUTPUTNAME="QUAST_flye_assembly_noref"
-PACBIODATA="${WORKDIR}/PacBio_genome_data/Est-0/ERR11437308.fastq.gz"
 
+#make outputdir path if it doesnt exist
 mkdir -p $OUTPUTDIR
 
+#assembly data
+FLYEDATA="${WORKDIR}/output_files/week2/01_flye/pacbio_hifi_Est-0/assembly.fasta"
+
+#pacbio data
+PACBIODATA="${WORKDIR}/PacBio_genome_data/Est-0/ERR11437308.fastq.gz"
+
+
+#runs quast on flye assembly without a reference
 apptainer exec --bind /data/ ${CONTAINER} quast ${FLYEDATA} --eukaryote --large --pacbio ${PACBIODATA} --no-sv -o ${OUTPUTDIR}
 
 # --eukaryote - arabidopsis thaliana is eukaryotic

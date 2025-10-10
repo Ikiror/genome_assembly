@@ -10,12 +10,21 @@
 #SBATCH --error=/data/users/aikiror/genomeAssembly/report_and_errors/error_fastqc_%j.e
 #SBATCH --partition=pibu_el8
 
+#this script runs fastqc to evaluate quality of fasta
+
+#container
 CONTAINER="/containers/apptainer/fastqc-0.12.1.sif"
+
 WORKDIR="/data/users/aikiror/genomeAssembly"
 OUTPUTDIR="${WORKDIR}/output_files/01_fastqc"
+
+#make outputdir path if it doesnt exist
+mkdir -p ${OUTPUTDIR}
+
+#accession data 
 GENOMEDATAFOLDER="${WORKDIR}/genome_data/Est-0"
 ASCENSCIONFOLDER="${WORKDIR}/ascension_data/RNAseq_Sha"
 
-mkdir -p ${OUTPUTDIR}
 
+#run fastqc
 apptainer exec --bind /data/ ${CONTAINER} fastqc ${GENOMEDATAFOLDER}/*.gz ${ASCENSCIONFOLDER}/*gz --outdir ${OUTPUTDIR} 

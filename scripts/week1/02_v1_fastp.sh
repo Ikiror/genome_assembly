@@ -10,12 +10,21 @@
 #SBATCH --error=/data/users/aikiror/genomeAssembly/report_and_errors/error_fastp_v1_%j.e
 #SBATCH --partition=pibu_el8
 
+#this script runs fastp to trim and improve quality of data
+
+#container
 CONTAINER="/containers/apptainer/fastp_0.23.2--h5f740d0_3.sif"
+
+#directories 
 WORKDIR="/data/users/aikiror/genomeAssembly"
 OUTPUTDIR="${WORKDIR}/output_files/02_fastp"
 
-GENOMEDATA="${WORKDIR}/genome_data/Est-0/ERR11437308.fastq.gz"
-
+#make outputdir path if it doesnt exist
 mkdir -p ${OUTPUTDIR}
 
+#est-0 accession data
+GENOMEDATA="${WORKDIR}/genome_data/Est-0/ERR11437308.fastq.gz"
+
+
+#run fastp
 apptainer exec --bind /data/ ${CONTAINER} fastp --in1 ${GENOMEDATA} --out1 "${OUTPUTDIR}/genome_data.fastq.gz" -Q -h "${OUTPUTDIR}/genome_data_fastp.html"

@@ -9,18 +9,23 @@
 #SBATCH --error=/data/users/aikiror/genomeAssembly/report_and_errors/error_12_MERQURY_%j.e
 #SBATCH --partition=pibu_el8
 
+#this script runs merqury to evaluate an assembly's kmers by comparing them to the unassembled 
+#high accuracy Pacbio Hifi reads
+
 #container
 CONTAINER="/containers/apptainer/merqury_1.3.sif"
 
 #directories; outputs
 WORKDIR="/data/users/aikiror/genomeAssembly"
 OUTPUTDIR="${WORKDIR}/output_files/week3/12_MERQURY"
+
+#make outputdir path if it doesnt exist
 mkdir -p ${OUTPUTDIR}
 
 #pacbio hifi reads
 PACBIODATA="${WORKDIR}/PacBio_genome_data/Est-0/ERR11437308.fastq.gz"
 
-#arabidopsisThaliana - 135MB = 135000000bp
+#arabidopsisThaliana genome size- 135MB = 135000000bp
 GENOMESIZE=135000000
 
 #previously determined k
@@ -39,8 +44,9 @@ HIFI_OUT="hifiasm_data"
 LJA_OUT="lja_data"
 
 ###
-#meryl kmer database from pacbio hifi reads
+#generate meryl kmer database from pacbio hifi reads
 echo "*** Building meryl database from PacBio reads ***"
+#change directories to location where pacbio database will be generated
 cd ${OUTPUTDIR}
 
 # Run meryl inside the container (k determined from earlier step)

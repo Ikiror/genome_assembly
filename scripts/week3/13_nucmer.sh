@@ -9,6 +9,8 @@
 #SBATCH --error=/data/users/aikiror/genomeAssembly/report_and_errors/error_13_nucmer_%j.e
 #SBATCH --partition=pibu_el8
 
+#this script generates .delta of the reference vs the query(assembly) using nucmer
+
 #directories
 WORKDIR="/data/users/aikiror/genomeAssembly"
 OUTPUTDIR="${WORKDIR}/output_files/week3/13_nucmer"

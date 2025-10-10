@@ -9,15 +9,26 @@
 #SBATCH --error=/data/users/aikiror/genomeAssembly/report_and_errors/error_hifiasm_%j.e
 #SBATCH --partition=pibu_el8
 
-WORKDIR="/data/users/aikiror/genomeAssembly"
+#this script runs the hifiasm genome assembler on genome data
+
+#container 
 CONTAINER="/containers/apptainer/hifiasm_0.25.0.sif"
-PACBIODATA="${WORKDIR}/PacBio_genome_data/Est-0/ERR11437308.fastq.gz"
-OUTPUTDIR="${WORKDIR}/output_files/02_hifiasm"
+
+#directories
+WORKDIR="/data/users/aikiror/genomeAssembly"
+OUTPUTDIR="${WORKDIR}/output_files/week2/02_hifiasm"
+
+#output prefix
 HIFIASM_OUT="${OUTPUTDIR}/pacbio_hifi_Est-0"
 
+#make outputdir path if it doesnt exist
 mkdir -p $OUTPUTDIR
 
-#generates assemblies
+##est-0 data 
+PACBIODATA="${WORKDIR}/PacBio_genome_data/Est-0/ERR11437308.fastq.gz"
+
+
+#generates assemblies using hifiasm assembler
 apptainer exec --bind /data/ ${CONTAINER} hifiasm ${PACBIODATA} -o ${HIFIASM_OUT} -t 16
 
 # #GFA to FASTA
