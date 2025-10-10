@@ -9,10 +9,12 @@
 #SBATCH --error=/data/users/aikiror/genomeAssembly/report_and_errors/error_14_mummerplot_%j.e
 #SBATCH --partition=pibu_el8
 
+#directories
 WORKDIR="/data/users/aikiror/genomeAssembly"
 OUTPUTDIR="${WORKDIR}/output_files/week3/14_mummerplot"
 CONTAINER="/containers/apptainer/mummer4_gnuplot.sif"
 
+#make outputdir path if it doesnt exist
 mkdir -p ${OUTPUTDIR}
 
 #fasta data = diff generated genome assemblies
@@ -20,16 +22,20 @@ FLYE_ASSEMBLY="${WORKDIR}/output_files/week2/01_flye/pacbio_hifi_Est-0/assembly.
 HIFI_ASSEMBLY="${WORKDIR}/output_files/week2/02_hifiasm/pacbio_hifi_Est-0.p_ctg.fa"
 LJA_ASSEMBLY="${WORKDIR}/output_files/week2/03_lja/pacbio_hifi_Est-0/assembly.fasta"
 
+#reference fasta for comparison
 REFERENCE="/data/courses/assembly-annotation-course/references/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa"
 
+#output prefix
 FLYE_OUT="flye_data"
 HIFI_OUT="hifiasm_data"
 LJA_OUT="lja_data"
 
+#assembly delta paths
 FLYEDELTA="${WORKDIR}/output_files/week3/15_nucmer/flye_data.delta"
 HIFIDELTA="${WORKDIR}/output_files/week3/15_nucmer/hifiasm_data.delta"
 LJADELTA="${WORKDIR}/output_files/week3/15_nucmer/lja_data.delta"
 
+#plotting
 apptainer exec --bind /data/ ${CONTAINER} mummerplot -t png --layout --filter --large --fat -R ${REFERENCE} -Q ${FLYE_ASSEMBLY} -p ${OUTPUTDIR}/${FLYE_OUT} ${FLYEDELTA}
 
 apptainer exec --bind /data/ ${CONTAINER} mummerplot -t png --layout --filter --large --fat -R ${REFERENCE} -Q ${HIFI_ASSEMBLY} -p ${OUTPUTDIR}/${HIFI_OUT} ${HIFIDELTA}

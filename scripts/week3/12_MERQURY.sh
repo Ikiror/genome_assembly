@@ -55,15 +55,18 @@ echo "Meryl database built: ${OUTPUTDIR}/pacbioEst0.meryl"
 # Export Merqury installation path (inside container)
 export MERQURY="/usr/local/share/merqury"
 
+#echo to check if script running
 echo "=== Running Merqury for Flye assembly ==="
 apptainer exec --bind /data/ ${CONTAINER} merqury.sh pacbioEst0.meryl ${FLYE_ASSEMBLY} ${FLYE_OUT}
 
+#echo to check if script running
 echo "=== Running Merqury for Hifiasm assembly ==="
 apptainer exec --bind /data/ ${CONTAINER} merqury.sh pacbioEst0.meryl ${HIFI_ASSEMBLY} ${HIFI_OUT}
 
+#echo to check if script running
 echo "=== Running Merqury for LJA assembly ==="
 apptainer exec --bind /data/ ${CONTAINER} merqury.sh pacbioEst0.meryl ${LJA_ASSEMBLY} ${LJA_OUT}
 
-
+#echo to check if script running
 echo "Merqury evaluations complete!"
 echo "Check the output folders in: ${OUTPUTDIR}/"
