@@ -30,6 +30,7 @@ Assembly Evaluation:
 4. MERQURY – consensus accuracy (QV) and completeness  
 
 ## Script structure
+```
 scripts
 --week1
 ----01_fastqc.sh  
@@ -58,6 +59,7 @@ scripts
 ----12_MERQURY.sh
 ----13_nucmer.sh
 ----14_mummerplot.sh
+```
                  
 ### 🧾 Author
 **Ikiror**  
